@@ -1,10 +1,14 @@
 /*
 */
+//#include "rbt.h"
+//#include "rbt_shortcuts.h"
+//#include "col.h"
 
 #define RM2PAREA_LIBRARY_HEADER
 
 
 #include "python.h"
+#include "x_rm1.tab.h"
 #include <iostream>
 
 
