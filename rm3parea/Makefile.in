@@ -138,6 +138,10 @@ AM_V_lt = $(am__v_lt_@AM_V@)
 am__v_lt_ = $(am__v_lt_@AM_DEFAULT_V@)
 am__v_lt_0 = --silent
 am__v_lt_1 = 
+librm3parea_la_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CC \
+	$(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=link $(CCLD) \
+	$(librm3parea_la_CFLAGS) $(CFLAGS) $(AM_LDFLAGS) $(LDFLAGS) -o \
+	$@
 AM_V_P = $(am__v_P_@AM_V@)
 am__v_P_ = $(am__v_P_@AM_DEFAULT_V@)
 am__v_P_0 = false
@@ -327,6 +331,7 @@ librm3parea_a_SOURCES = $librm3parea_la_SOURCES
 #also AC_CPPFLAGS
 librm3parea_la_CPPFLAGS = -I../mm3parea
 librm3parea_a_CPPFLAGS = $librm3parea_la_CPPFLAGS
+librm3parea_la_CFLAGS = -O0  #there are problems on Debian 6 64bit with -O2
 all: all-am
 
 .SUFFIXES:
@@ -434,7 +439,7 @@ clean-libLTLIBRARIES:
 	}
 
 librm3parea.la: $(librm3parea_la_OBJECTS) $(librm3parea_la_DEPENDENCIES) $(EXTRA_librm3parea_la_DEPENDENCIES) 
-	$(AM_V_CCLD)$(LINK) -rpath $(libdir) $(librm3parea_la_OBJECTS) $(librm3parea_la_LIBADD) $(LIBS)
+	$(AM_V_CCLD)$(librm3parea_la_LINK) -rpath $(libdir) $(librm3parea_la_OBJECTS) $(librm3parea_la_LIBADD) $(LIBS)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
@@ -471,46 +476,46 @@ distclean-compile:
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LTCOMPILE) -c -o $@ $<
 
 librm3parea_la-aa.lo: aa.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(librm3parea_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT librm3parea_la-aa.lo -MD -MP -MF $(DEPDIR)/librm3parea_la-aa.Tpo -c -o librm3parea_la-aa.lo `test -f 'aa.c' || echo '$(srcdir)/'`aa.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(librm3parea_la_CPPFLAGS) $(CPPFLAGS) $(librm3parea_la_CFLAGS) $(CFLAGS) -MT librm3parea_la-aa.lo -MD -MP -MF $(DEPDIR)/librm3parea_la-aa.Tpo -c -o librm3parea_la-aa.lo `test -f 'aa.c' || echo '$(srcdir)/'`aa.c
 @am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/librm3parea_la-aa.Tpo $(DEPDIR)/librm3parea_la-aa.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='aa.c' object='librm3parea_la-aa.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(librm3parea_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o librm3parea_la-aa.lo `test -f 'aa.c' || echo '$(srcdir)/'`aa.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(librm3parea_la_CPPFLAGS) $(CPPFLAGS) $(librm3parea_la_CFLAGS) $(CFLAGS) -c -o librm3parea_la-aa.lo `test -f 'aa.c' || echo '$(srcdir)/'`aa.c
 
 librm3parea_la-stack.lo: stack.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(librm3parea_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT librm3parea_la-stack.lo -MD -MP -MF $(DEPDIR)/librm3parea_la-stack.Tpo -c -o librm3parea_la-stack.lo `test -f 'stack.c' || echo '$(srcdir)/'`stack.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(librm3parea_la_CPPFLAGS) $(CPPFLAGS) $(librm3parea_la_CFLAGS) $(CFLAGS) -MT librm3parea_la-stack.lo -MD -MP -MF $(DEPDIR)/librm3parea_la-stack.Tpo -c -o librm3parea_la-stack.lo `test -f 'stack.c' || echo '$(srcdir)/'`stack.c
 @am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/librm3parea_la-stack.Tpo $(DEPDIR)/librm3parea_la-stack.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='stack.c' object='librm3parea_la-stack.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(librm3parea_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o librm3parea_la-stack.lo `test -f 'stack.c' || echo '$(srcdir)/'`stack.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(librm3parea_la_CPPFLAGS) $(CPPFLAGS) $(librm3parea_la_CFLAGS) $(CFLAGS) -c -o librm3parea_la-stack.lo `test -f 'stack.c' || echo '$(srcdir)/'`stack.c
 
 librm3parea_la-list.lo: list.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(librm3parea_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT librm3parea_la-list.lo -MD -MP -MF $(DEPDIR)/librm3parea_la-list.Tpo -c -o librm3parea_la-list.lo `test -f 'list.c' || echo '$(srcdir)/'`list.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(librm3parea_la_CPPFLAGS) $(CPPFLAGS) $(librm3parea_la_CFLAGS) $(CFLAGS) -MT librm3parea_la-list.lo -MD -MP -MF $(DEPDIR)/librm3parea_la-list.Tpo -c -o librm3parea_la-list.lo `test -f 'list.c' || echo '$(srcdir)/'`list.c
 @am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/librm3parea_la-list.Tpo $(DEPDIR)/librm3parea_la-list.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='list.c' object='librm3parea_la-list.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(librm3parea_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o librm3parea_la-list.lo `test -f 'list.c' || echo '$(srcdir)/'`list.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(librm3parea_la_CPPFLAGS) $(CPPFLAGS) $(librm3parea_la_CFLAGS) $(CFLAGS) -c -o librm3parea_la-list.lo `test -f 'list.c' || echo '$(srcdir)/'`list.c
 
 librm3parea_la-misc.lo: misc.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(librm3parea_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT librm3parea_la-misc.lo -MD -MP -MF $(DEPDIR)/librm3parea_la-misc.Tpo -c -o librm3parea_la-misc.lo `test -f 'misc.c' || echo '$(srcdir)/'`misc.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(librm3parea_la_CPPFLAGS) $(CPPFLAGS) $(librm3parea_la_CFLAGS) $(CFLAGS) -MT librm3parea_la-misc.lo -MD -MP -MF $(DEPDIR)/librm3parea_la-misc.Tpo -c -o librm3parea_la-misc.lo `test -f 'misc.c' || echo '$(srcdir)/'`misc.c
 @am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/librm3parea_la-misc.Tpo $(DEPDIR)/librm3parea_la-misc.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='misc.c' object='librm3parea_la-misc.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(librm3parea_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o librm3parea_la-misc.lo `test -f 'misc.c' || echo '$(srcdir)/'`misc.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(librm3parea_la_CPPFLAGS) $(CPPFLAGS) $(librm3parea_la_CFLAGS) $(CFLAGS) -c -o librm3parea_la-misc.lo `test -f 'misc.c' || echo '$(srcdir)/'`misc.c
 
 librm3parea_la-col.lo: col.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(librm3parea_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT librm3parea_la-col.lo -MD -MP -MF $(DEPDIR)/librm3parea_la-col.Tpo -c -o librm3parea_la-col.lo `test -f 'col.c' || echo '$(srcdir)/'`col.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(librm3parea_la_CPPFLAGS) $(CPPFLAGS) $(librm3parea_la_CFLAGS) $(CFLAGS) -MT librm3parea_la-col.lo -MD -MP -MF $(DEPDIR)/librm3parea_la-col.Tpo -c -o librm3parea_la-col.lo `test -f 'col.c' || echo '$(srcdir)/'`col.c
 @am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/librm3parea_la-col.Tpo $(DEPDIR)/librm3parea_la-col.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='col.c' object='librm3parea_la-col.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(librm3parea_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o librm3parea_la-col.lo `test -f 'col.c' || echo '$(srcdir)/'`col.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(librm3parea_la_CPPFLAGS) $(CPPFLAGS) $(librm3parea_la_CFLAGS) $(CFLAGS) -c -o librm3parea_la-col.lo `test -f 'col.c' || echo '$(srcdir)/'`col.c
 
 librm3parea_la-rbt.lo: rbt.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(librm3parea_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT librm3parea_la-rbt.lo -MD -MP -MF $(DEPDIR)/librm3parea_la-rbt.Tpo -c -o librm3parea_la-rbt.lo `test -f 'rbt.c' || echo '$(srcdir)/'`rbt.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(librm3parea_la_CPPFLAGS) $(CPPFLAGS) $(librm3parea_la_CFLAGS) $(CFLAGS) -MT librm3parea_la-rbt.lo -MD -MP -MF $(DEPDIR)/librm3parea_la-rbt.Tpo -c -o librm3parea_la-rbt.lo `test -f 'rbt.c' || echo '$(srcdir)/'`rbt.c
 @am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/librm3parea_la-rbt.Tpo $(DEPDIR)/librm3parea_la-rbt.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='rbt.c' object='librm3parea_la-rbt.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(librm3parea_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o librm3parea_la-rbt.lo `test -f 'rbt.c' || echo '$(srcdir)/'`rbt.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(librm3parea_la_CPPFLAGS) $(CPPFLAGS) $(librm3parea_la_CFLAGS) $(CFLAGS) -c -o librm3parea_la-rbt.lo `test -f 'rbt.c' || echo '$(srcdir)/'`rbt.c
 
 mostlyclean-libtool:
 	-rm -f *.lo
