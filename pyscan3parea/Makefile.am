@@ -4,8 +4,12 @@ lib_LIBRARIES = libpyscan3parea.a
 #libpyscan3parea_la_CFLAGS = -O0  #there are problems on Debian 6 64bit with -O2
 libpyscan3parea_la_CPPFLAGS=-I../mm3parea -I../rm3parea -DNDEBUG -DRM2_BUILD_LIBRARY
 libpyscan3parea_a_CPPFLAGS=$libpyscan3parea_la_CPPFLAGS
-libpyscan3parea_la_SOURCES = debug.h goals.h inc.h main.c python.h appl.h debug2.h inc.c main.h x_io1.h lex.yy_.c x_rm1.tab.h x_rm1.tab1.c
+libpyscan3parea_la_SOURCES = debug.h goals.h inc.h main.c appl.h debug2.h inc.c main.h x_io1.h lex.yy_.c x_rm1.tab1.c
 libpyscan3parea_a_SOURCES=$libpyscan3parea_la_SOURCES
+#DD01_HOWTO(LINUX01_automake) otherincludedir
+#http://stackoverflow.com/questions/5603902/placing-header-files-in-a-subdirectory-of-usr-include-with-automake
+otherincludedir = $(includedir)/pyscan3parea
+otherinclude_HEADERS = x_rm1.tab.h python.h
 
 bin_PROGRAMS = pyscan3parea_test
 pyscan3parea_test_SOURCES = pythontest.cpp

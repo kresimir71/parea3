@@ -15831,7 +15831,7 @@ fi
 
 #CFLAGS="$CFLAGS -ansi"
 
-CFLAGS+=" -O0"
+CFLAGS="$CFLAGS -O0"  #there are problems on Debian 6 64bit with -O2
 
 ac_config_files="$ac_config_files Makefile mm3parea/Makefile rm3parea/Makefile pyscan3parea/Makefile"
 

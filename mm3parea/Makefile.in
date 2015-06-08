@@ -129,16 +129,12 @@ am_libmm3parea_a_OBJECTS =
 libmm3parea_a_OBJECTS = $(am_libmm3parea_a_OBJECTS)
 LTLIBRARIES = $(lib_LTLIBRARIES)
 libmm3parea_la_LIBADD =
-am_libmm3parea_la_OBJECTS = libmm3parea_la-mm2.lo
+am_libmm3parea_la_OBJECTS = mm2.lo
 libmm3parea_la_OBJECTS = $(am_libmm3parea_la_OBJECTS)
 AM_V_lt = $(am__v_lt_@AM_V@)
 am__v_lt_ = $(am__v_lt_@AM_DEFAULT_V@)
 am__v_lt_0 = --silent
 am__v_lt_1 = 
-libmm3parea_la_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CC \
-	$(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=link $(CCLD) \
-	$(libmm3parea_la_CFLAGS) $(CFLAGS) $(AM_LDFLAGS) $(LDFLAGS) -o \
-	$@
 AM_V_P = $(am__v_P_@AM_V@)
 am__v_P_ = $(am__v_P_@AM_DEFAULT_V@)
 am__v_P_0 = false
@@ -321,7 +317,7 @@ top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 lib_LTLIBRARIES = libmm3parea.la
 libmm3parea_la_SOURCES = mm2.c mm2.h
-libmm3parea_la_CFLAGS = -O0  #there are problems on Debian 6 64bit with -O2
+#libmm3parea_la_CFLAGS = -O0  #there are problems on Debian 6 64bit with -O2
 lib_LIBRARIES = libmm3parea.a
 libmm3parea_a_SOURCES = $lib_LIBRARIES
 all: all-am
@@ -431,7 +427,7 @@ clean-libLTLIBRARIES:
 	}
 
 libmm3parea.la: $(libmm3parea_la_OBJECTS) $(libmm3parea_la_DEPENDENCIES) $(EXTRA_libmm3parea_la_DEPENDENCIES) 
-	$(AM_V_CCLD)$(libmm3parea_la_LINK) -rpath $(libdir) $(libmm3parea_la_OBJECTS) $(libmm3parea_la_LIBADD) $(LIBS)
+	$(AM_V_CCLD)$(LINK) -rpath $(libdir) $(libmm3parea_la_OBJECTS) $(libmm3parea_la_LIBADD) $(LIBS)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
@@ -439,7 +435,7 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libmm3parea_la-mm2.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/mm2.Plo@am__quote@
 
 .c.o:
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
@@ -461,13 +457,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='$<' object='$@' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LTCOMPILE) -c -o $@ $<
-
-libmm3parea_la-mm2.lo: mm2.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libmm3parea_la_CFLAGS) $(CFLAGS) -MT libmm3parea_la-mm2.lo -MD -MP -MF $(DEPDIR)/libmm3parea_la-mm2.Tpo -c -o libmm3parea_la-mm2.lo `test -f 'mm2.c' || echo '$(srcdir)/'`mm2.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libmm3parea_la-mm2.Tpo $(DEPDIR)/libmm3parea_la-mm2.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='mm2.c' object='libmm3parea_la-mm2.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libmm3parea_la_CFLAGS) $(CFLAGS) -c -o libmm3parea_la-mm2.lo `test -f 'mm2.c' || echo '$(srcdir)/'`mm2.c
 
 mostlyclean-libtool:
 	-rm -f *.lo
