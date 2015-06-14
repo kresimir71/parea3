@@ -108,8 +108,8 @@ static int handle_token(){
       TokBeforeNL=TokNL;
       TokBeforeNL++;
       if(TOK_COMMENT!=TokBeforeNL->id){
-	//insert token between TokBeforeNL and TokNL with id=TOK_COMMENT, text = "#}...}#", number of braces equals NumberOfDedents
-	insertTokenRec(TokNL,TOK_COMMENT,std::string(" #") + std::string(NumberOfDedents,'}') + std::string("#"));
+	//insert token between TokBeforeNL and TokNL with id=TOK_COMMENT, text = "#}...}", number of braces equals NumberOfDedents
+	insertTokenRec(TokNL,TOK_COMMENT,std::string(" #") + std::string(NumberOfDedents,'}') + std::string(""));
       }else{
 	if(correctBracesContruct(TokBeforeNL->text)){ // any positive number of braces in "#}...}#"
 	  //replace with "#}...}#", number of braces equals NumberOfDedents (already done in function)

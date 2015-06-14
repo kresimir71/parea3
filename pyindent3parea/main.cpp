@@ -15,18 +15,22 @@ int main( int argc,  char **argv){
   int iflag = 0; //indent
   int bflag = 0; //block
   int rflag = 0; //remove, implies -i
+  int fflag = 0; //everywhere force given tab length(otherwise use -n as adviced tab length), implies -i
   char *nvalue = NULL; // tab length
   int index;
   int c;
 
   opterr = 0;
-  while ((c = getopt (argc, argv, "abc:")) != -1)
+  while ((c = getopt (argc, argv, "ibfn:")) != -1)
     switch (c)
       {
       case 'i':
         iflag = 1;
         break;
       case 'b':
+        bflag = 1;
+        break;
+      case 'f':
         bflag = 1;
         break;
       case 'n':

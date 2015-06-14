@@ -244,7 +244,7 @@ static void python_specific_misc_macro_after_symbol(parser_master_t*m){
      // pop closed para
      col_t*i=stack_pop(para_stack);	
      if (i ){
-       if(TOK_OP==val_int(i)&&TOK_CP!=sym01->id||TOK_OB==val_int(i)&&TOK_CB!=sym01->id||TOK_AO==val_int(i)&&TOK_AC!=sym01->id){
+       if(TOK_OP==*val_int(i)&&TOK_CP!=sym01->id||TOK_OB==*val_int(i)&&TOK_CB!=sym01->id||TOK_AO==*val_int(i)&&TOK_AC!=sym01->id){
          fprintf (stderr,"Mismatched parantheses at line:%d",line_number_beg(sym01));
 	 // here mention the line and solve exit in another way
          exit (1);

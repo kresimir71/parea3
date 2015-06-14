@@ -216,7 +216,7 @@ typedef struct parser_master_tag
   long (*col01_yylex)(YYSTYPE *t, void*current_misc_master_record);
   /*flex function pointer */
   //DOC_STRUCTVAR(col01_flex_call DG_BISON_COMMON)
-  long (*col01_flex_call)(void);
+  long (*col01_flex_call)(void**p);
   /* user data: currently a list of SPACE terminals to ba hanged on a non-SPACE terminal in some applications*/
   //DOC_STRUCTVAR(parser_user_data DG_BISON_COMMON)
   col_t* parser_user_data;

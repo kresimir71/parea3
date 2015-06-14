@@ -74,7 +74,7 @@ long yylex_(parser_master_t*p)
     {
       long result=0;
       /*calling flex: usually, yy_lex or similar (depending on chosen suffix) is in fact called here*/
-      result=DER(p->col01_flex_call)();
+      result=DER(p->col01_flex_call)(NULL);
       main_after_symbol_macro(&result);
       return result;
     }
@@ -88,7 +88,7 @@ long yylex_(parser_master_t*p)
 
 /*New parser. gc gets next character for flex, yyl gets next symbol for parser, flex_yyl is call flex to get next symbol.*/
 //DOC_FUNC_DEF(misc_new_parser DG_BISON_COMMON)
-parser_master_t* misc_new_parser(long (*gc)(parser_master_t*), long (*yyl)(YYSTYPE *, void*),long (*flex_yyl)(void))
+parser_master_t* misc_new_parser(long (*gc)(parser_master_t*), long (*yyl)(YYSTYPE *, void*),int (*flex_yyl)(void**))
 {
   parser_master_t*m=(parser_master_t*)mm2_bound_new_mem(sizeof(parser_master_t));
   col_t*var=(col_t*)m;
@@ -115,9 +115,14 @@ parser_master_t* misc_new_parser(long (*gc)(parser_master_t*), long (*yyl)(YYSTY
   m->misc_yyempty=2;
   //  m->col01_scanner_at_eof=0;
   if(flex_yyl) {
-    long parser_in_flex = DER(m->col01_flex_call)();
-    long parser_in_flex_HI64bit=0;DER(m->col01_flex_call)(); //used only on 64bit systems: higher 32 bits
-    m->misc_parser_for_flex=(parser_master_t**)(((unsigned long)parser_in_flex)+(((unsigned long)parser_in_flex_HI64bit)<<32));
+    void *p;
+    DER(m->col01_flex_call)(&p);
+    m->misc_parser_for_flex = p;
+
+/*     long parser_in_flex = DER(m->col01_flex_call)(); */
+/*     long parser_in_flex_HI64bit=0;DER(m->col01_flex_call)(); //used only on 64bit systems: higher 32 bits */
+/*     m->misc_parser_for_flex=(parser_master_t**)(((unsigned long)parser_in_flex)+(((unsigned long)parser_in_flex_HI64bit)<<32)); */
+
     *(m->misc_parser_for_flex)=m;
   }
   return m;

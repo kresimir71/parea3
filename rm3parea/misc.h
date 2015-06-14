@@ -74,7 +74,8 @@ typedef struct
 
 /*to be done every time yy lex is called: only first time is important - to initialize the parser pointer (for advanced architectures twice is possible)*/
 //DOC_DEFINE(FLEX_BEGIN_NEXT_TOKEN DG_BISON_COMMON)
-#define FLEX_BEGIN_NEXT_TOKEN {static long step=0;if (!mp&&!step) {step=1;return (long)&mp;} if (!mp&&step==1) {step=0;return (long)(((unsigned long)&mp)>>32);}  /*not needed:*/step=0;}
+//#define FLEX_BEGIN_NEXT_TOKEN {static long step=0;if (!mp&&!step) {step=1;return (long)&mp;} if (!mp&&step==1) {step=0;return (long)(((unsigned long)&mp)>>32);}  /*not needed:*/step=0;}
+#define FLEX_BEGIN_NEXT_TOKEN {static long step=0;if (!mp&&!step) {step=1;*p123= &mp;return 0;} }
 
 
 
@@ -87,14 +88,14 @@ int yyprint (FILE *file,int type,YYSTYPE value);
 long yylex_(parser_master_t*p);
 #ifdef yylex
 /*we are in flex compile unit: the macro should never be equal to itself otherwise double symbols*/
-int yylex (void);
+int yylex (void**);
 #else
 int yylex (YYSTYPE * v,void*current_misc_master_record);
 #endif
 int yylex_close(void);
 
 long misc_yylex (YYSTYPE * v,void*current_misc_master_record);
-parser_master_t* misc_new_parser(long (*gc)(parser_master_t*), long (*yyl)(YYSTYPE *, void*),long (*flex_yyl)(void));
+parser_master_t* misc_new_parser(long (*gc)(parser_master_t*), long (*yyl)(YYSTYPE *, void*),int (*flex_yyl)(void**));
 lisp_cons_cell_t* dt_mem2_from_current_list(col_t* current);
 //col_t * symbol_text6(pleaf_t sym,col_t*(*st)(pleaf_t));
 //col_t* symbol_text_rec(pleaf_t b,col_t*r,col_t*(*st)(pleaf_t));
