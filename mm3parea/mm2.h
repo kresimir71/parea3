@@ -5,7 +5,7 @@
 #include "stdio.h"
 #include "assert.h"
 
-#define END_FUNCTION(a,b,c) c
+#define END_FUNCTION(a,b,c) b
 #define BEGIN_FUNCTION(a,b)
 #define ASSERT(a) assert(a);
 #define DEBUG_DUMP_INT(a,b)
