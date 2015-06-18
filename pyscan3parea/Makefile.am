@@ -11,7 +11,7 @@ libpyscan3parea_a_SOURCES=$libpyscan3parea_la_SOURCES
 otherincludedir = $(includedir)/pyscan3parea
 otherinclude_HEADERS = x_rm1.tab.h python.h
 
-bin_PROGRAMS = pyscan3parea_test
+noinst_PROGRAMS = pyscan3parea_test
 pyscan3parea_test_SOURCES = pythontest.cpp
 pyscan3parea_test_LDFLAGS = -L../rm3parea -L../mm3parea 
 pyscan3parea_test_LDADD =   -lpyscan3parea -lmm3parea -lrm3parea -lpcre

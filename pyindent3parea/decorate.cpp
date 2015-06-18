@@ -39,30 +39,30 @@ void insertTokenRec(std::list<TokenRec>::reverse_iterator succ, int id, std::str
   TokenRec temp;
   temp.id=id;
   temp.text=txt;
-  TokenList.insert(succ.base(),temp);
+  TokenList.insert((++succ).base(),temp);
 }
 
 bool correctBracesContruct(std::string &txt){
   for (std::string::iterator iii = txt.begin();iii!=txt.end();iii++){
     if (iii == txt.begin() && *iii !='#'){
-      break;
+      break; // never!?
     }
     if (iii == txt.begin() && *iii =='#'){
-      continue;
+      continue; // always *iii =='#'
     }
     if (*iii == '}'){
       continue;
     }
-    if (iii-1 == txt.begin() && *iii =='#'){
+    if (iii-1 == txt.begin() && *iii !='}'){
       break;
-    } else if (*iii =='#'){
+    } else if (*iii !='}'){
       std::string tmp = std::string("#")+std::string(NumberOfDedents,'}');
       txt.replace(txt.begin(),iii,tmp);
-      return true;
+      return true; //correcting success!
     }
     break;
   }
-  return false;
+  return false; //correcting failed
 }
 static int handle_token(){
   std::list<TokenRec>::reverse_iterator iii;
@@ -84,10 +84,10 @@ static int handle_token(){
     }
     
     if(TOK_COMMENT!=TokBeforeNL->id){
-      //insert token between TokBeforeNL and TokNL with id=TOK_COMMENT, text = " #{#"
-      insertTokenRec(TokNL,TOK_COMMENT," #{#");
+      //insert token between TokBeforeNL and TokNL with id=TOK_COMMENT, text = " #{"
+      insertTokenRec(TokNL,TOK_COMMENT," #{");
     }else{
-      if(std::string(TokBeforeNL->text,0,3)=="#{#"){
+      if(std::string(TokBeforeNL->text,0,2)=="#{"){
 	//already there, nothing todo
       }else{
 	//prepend TokBeforeNL.text with "#{"
@@ -111,8 +111,8 @@ static int handle_token(){
 	//insert token between TokBeforeNL and TokNL with id=TOK_COMMENT, text = "#}...}", number of braces equals NumberOfDedents
 	insertTokenRec(TokNL,TOK_COMMENT,std::string(" #") + std::string(NumberOfDedents,'}') + std::string(""));
       }else{
-	if(correctBracesContruct(TokBeforeNL->text)){ // any positive number of braces in "#}...}#"
-	  //replace with "#}...}#", number of braces equals NumberOfDedents (already done in function)
+	if(correctBracesContruct(TokBeforeNL->text)){ // any positive number of braces in "#}...}..."
+	  //replace with "#}...}...", number of braces equals NumberOfDedents (already done in function)
 	}else{
 	  //prepend TokBeforeNL.text with "#}...}", number of braces equals NumberOfDedents
 	  TokBeforeNL->text=std::string("#")+std::string(NumberOfDedents,'}')+TokBeforeNL->text;
