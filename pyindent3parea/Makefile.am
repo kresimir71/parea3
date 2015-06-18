@@ -7,7 +7,7 @@ libpyscan3parea_la_CPPFLAGS=-I. -I.. -DNDEBUG
 
 EXTRA_DIST = python.c x_rm1.lex x_rm1.y
 
-info_TEXINFOS = info_pyindent3parea.texi
+info_TEXINFOS = pyindent3parea.texi
 
 #-L/usr/local/lib 
 

@@ -168,11 +168,11 @@ am__v_texidevnull_0 = > /dev/null
 am__v_texidevnull_1 = 
 INFO_DEPS = $(srcdir)/pyindent3parea.info
 am__TEXINFO_TEX_DIR = $(srcdir)
-DVIS = info_pyindent3parea.dvi
-PDFS = info_pyindent3parea.pdf
-PSS = info_pyindent3parea.ps
-HTMLS = info_pyindent3parea.html
-TEXINFOS = info_pyindent3parea.texi
+DVIS = pyindent3parea.dvi
+PDFS = pyindent3parea.pdf
+PSS = pyindent3parea.ps
+HTMLS = pyindent3parea.html
+TEXINFOS = pyindent3parea.texi
 TEXI2DVI = texi2dvi
 TEXI2PDF = $(TEXI2DVI) --pdf --batch
 MAKEINFOHTML = $(MAKEINFO) --html
@@ -354,7 +354,7 @@ pyindent3parea_LDFLAGS = -L../rm3parea -L../mm3parea -L../pyscan3parea
 pyindent3parea_LDADD = -lpyscan3parea -lmm3parea -lrm3parea -lpcre
 libpyscan3parea_la_CPPFLAGS = -I. -I.. -DNDEBUG
 EXTRA_DIST = python.c x_rm1.lex x_rm1.y
-info_TEXINFOS = info_pyindent3parea.texi
+info_TEXINFOS = pyindent3parea.texi
 all: all-am
 
 .SUFFIXES:
@@ -522,10 +522,10 @@ clean-libtool:
 	else \
 	  rm -rf $(@:.html=.htp); exit 1; \
 	fi
-$(srcdir)/pyindent3parea.info: info_pyindent3parea.texi 
-pyindent3parea.dvi: info_pyindent3parea.texi 
-pyindent3parea.pdf: info_pyindent3parea.texi 
-pyindent3parea.html: info_pyindent3parea.texi 
+$(srcdir)/pyindent3parea.info: pyindent3parea.texi 
+pyindent3parea.dvi: pyindent3parea.texi 
+pyindent3parea.pdf: pyindent3parea.texi 
+pyindent3parea.html: pyindent3parea.texi 
 .dvi.ps:
 	$(AM_V_DVIPS)TEXINPUTS="$(am__TEXINFO_TEX_DIR)$(PATH_SEPARATOR)$$TEXINPUTS" \
 	$(DVIPS) $(AM_V_texinfo) -o $@ $<
@@ -607,7 +607,7 @@ dist-info: $(INFO_DEPS)
 	done
 
 mostlyclean-aminfo:
-	-rm -rf info_pyindent3parea.t2d info_pyindent3parea.t2p
+	-rm -rf pyindent3parea.t2d pyindent3parea.t2p
 
 clean-aminfo:
 	-test -z "pyindent3parea.dvi pyindent3parea.pdf pyindent3parea.ps \
