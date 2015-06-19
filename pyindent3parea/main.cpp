@@ -1,4 +1,3 @@
-
 #define RM2PAREA_LIBRARY_HEADER
 
 #include "pyscan3parea/python.h"
@@ -6,10 +5,13 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
+#include <iostream>
 
 //#include "decorate.h"
-extern void scan_callback(long tok_id, char* tokentext, int tokentextlen);
 
+namespace pyindent3parea_decorate{
+  extern void scan_callback(long tok_id, char* tokentext, int tokentextlen);
+}
 int main( int argc,  char **argv){
 
   int iflag = 0; //indent
@@ -55,10 +57,17 @@ int main( int argc,  char **argv){
   //for (index = optind; index < argc; index++)
   //  printf ("Non-option argument %s\n", argv[index]);
 
-  python_specific_subscribe(2,scan_callback);
-  //python_main_init(argc,argv);
-  python_main_init(argc-optind+1,&argv[optind-1]);
-
+  if (bflag || 1){
+    python_specific_subscribe(2,pyindent3parea_decorate::scan_callback);
+    //python_main_init(argc,argv);
+    python_main_init(argc-optind+1,&argv[optind-1]);
+  } else if (bflag || 1){
+    
+  } else if (bflag || 1){
+  } else {
+    std::cerr << "unrecognised options: see `info pyindent3parea`";
+    exit (1);
+  }
   //std::cerr << "ready";
   exit (0);
 

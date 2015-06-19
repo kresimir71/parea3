@@ -7,7 +7,7 @@ class foo1():
         try:
             self.__foo3 = bar3()
         except socket.error, err:
-            pass:
+            pass
                 
     def foo2(self):
         line = EMPTYSTRING.join(self.__line)

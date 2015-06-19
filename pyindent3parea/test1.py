@@ -7,7 +7,7 @@ class foo1(): #comment
         try: #{{
             self.__foo3 = bar3() #}}
         except socket.error, err:#}
-            pass:#comment
+            pass#comment
     def foo2(self):#{comment
         line = EMPTYSTRING.join(self.__line)
         print >> DEBUGSTREAM, 'Data:', repr(line)
@@ -17,3 +17,11 @@ class foo1(): #comment
                 self.push('500 Error: bad syntax')
                 return
             method = None #}}}}}}}}#
+     def moretest():
+         pass
+         #comment
+
+     def moretest1()
+       pass
+
+     

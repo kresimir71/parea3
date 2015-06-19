@@ -91,7 +91,8 @@ CONFIG_CLEAN_FILES =
 CONFIG_CLEAN_VPATH_FILES =
 am__installdirs = "$(DESTDIR)$(bindir)" "$(DESTDIR)$(infodir)"
 PROGRAMS = $(bin_PROGRAMS)
-am_pyindent3parea_OBJECTS = decorate.$(OBJEXT) main.$(OBJEXT)
+am_pyindent3parea_OBJECTS = decorate.$(OBJEXT) strip.$(OBJEXT) \
+	main.$(OBJEXT)
 pyindent3parea_OBJECTS = $(am_pyindent3parea_OBJECTS)
 pyindent3parea_DEPENDENCIES =
 AM_V_lt = $(am__v_lt_@AM_V@)
@@ -349,7 +350,7 @@ target_alias = @target_alias@
 top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
-pyindent3parea_SOURCES = decorate.cpp main.cpp
+pyindent3parea_SOURCES = decorate.cpp strip.cpp main.cpp
 pyindent3parea_LDFLAGS = -L../rm3parea -L../mm3parea -L../pyscan3parea
 pyindent3parea_LDADD = -lpyscan3parea -lmm3parea -lrm3parea -lpcre
 libpyscan3parea_la_CPPFLAGS = -I. -I.. -DNDEBUG
@@ -451,6 +452,7 @@ distclean-compile:
 
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/decorate.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/main.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/strip.Po@am__quote@
 
 .cpp.o:
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXXCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<

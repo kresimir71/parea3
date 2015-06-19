@@ -152,6 +152,15 @@ Decorating a python file with block-structure proceeds as follows:
 
 Every INDENT is prefixed with #@{ at the end of the previous line. If the previous line already ends in #@{, it is left intact. If the previous line ends in something like #@{anything then it is left intact
 
+A comment at the end of line beginning with #@{ means the following line begins with INDENT. The other caharacters execpt #@{ are not significant.
+
+A sole comment beginning with #@{  in an otherwise empty line is ignored.
+
+A sole comment beginning with #@} is a real possibility. After that line a number of DEDENTS are implied.
+
+
+Every DEDENT burst is prefixed with a comment at the end of the previous line, i.e. #@}@}@} for 3 DEDENTS. If a comment already exists there then it is prepended by #@}@}@} except if the existing comment also begins with #@}. In the later case, the initial part of the existing comment is replaced with the correct number of @} characters.
+
 @cindex chapter, first
 This is the first chapter.
 @cindex index entry, another

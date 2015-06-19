@@ -1,4 +1,4 @@
- /*decorate python program with comment-braces */ 
+ /*strip python program of comment-braces */ 
 
 #define RM2PAREA_LIBRARY_HEADER
 
@@ -8,7 +8,7 @@
 #include <iostream>
 #include <list>
 
-namespace pyindent3parea_decorate {
+namespace pyindent3parea_strip {
   class TokenRec{
   public:
     std::string text;

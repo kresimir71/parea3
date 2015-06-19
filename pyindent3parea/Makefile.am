@@ -1,6 +1,6 @@
 
 bin_PROGRAMS = pyindent3parea
-pyindent3parea_SOURCES = decorate.cpp main.cpp
+pyindent3parea_SOURCES = decorate.cpp strip.cpp main.cpp
 pyindent3parea_LDFLAGS = -L../rm3parea -L../mm3parea -L../pyscan3parea
 pyindent3parea_LDADD =   -lpyscan3parea -lmm3parea -lrm3parea -lpcre
 libpyscan3parea_la_CPPFLAGS=-I. -I.. -DNDEBUG
