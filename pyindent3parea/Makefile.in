@@ -525,7 +525,6 @@ clean-libtool:
 $(srcdir)/pyindent3parea.info: pyindent3parea.texi 
 pyindent3parea.dvi: pyindent3parea.texi 
 pyindent3parea.pdf: pyindent3parea.texi 
-pyindent3parea.html: pyindent3parea.texi 
 .dvi.ps:
 	$(AM_V_DVIPS)TEXINPUTS="$(am__TEXINFO_TEX_DIR)$(PATH_SEPARATOR)$$TEXINPUTS" \
 	$(DVIPS) $(AM_V_texinfo) -o $@ $<
@@ -928,12 +927,8 @@ uninstall-am: uninstall-binPROGRAMS uninstall-dvi-am uninstall-html-am \
 	uninstall-info-am uninstall-pdf-am uninstall-ps-am
 
 
-#-L/usr/local/lib 
-
-#lex.yy_.c: x_rm1.lex
-#	flex $(LFLAGS) -8 -Pyy_ x_rm1.lex
-#x_rm1.tab.c x_rm1.tab.h: x_rm1.y
-#	bison $(YFLAGS) -d x_rm1.y
+pyindent3parea.html: pyindent3parea.texi 
+	makeinfo --html --no-split pyindent3parea.texi
 
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.

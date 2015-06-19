@@ -9,9 +9,6 @@ EXTRA_DIST = python.c x_rm1.lex x_rm1.y
 
 info_TEXINFOS = pyindent3parea.texi
 
-#-L/usr/local/lib 
+pyindent3parea.html: pyindent3parea.texi 
+	makeinfo --html --no-split pyindent3parea.texi
 
-#lex.yy_.c: x_rm1.lex
-#	flex $(LFLAGS) -8 -Pyy_ x_rm1.lex
-#x_rm1.tab.c x_rm1.tab.h: x_rm1.y
-#	bison $(YFLAGS) -d x_rm1.y
