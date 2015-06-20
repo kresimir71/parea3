@@ -12,6 +12,15 @@
 namespace pyindent3parea_decorate{
   extern void scan_callback(long tok_id, char* tokentext, int tokentextlen);
 }
+namespace pyindent3parea_strip{
+  extern void scan_callback(long tok_id, char* tokentext, int tokentextlen);
+  extern void init();
+}
+namespace pyindent3parea_indent{
+  extern void scan_callback(long tok_id, char* tokentext, int tokentextlen);
+  extern void init();
+}
+
 int main( int argc,  char **argv){
 
   int iflag = 0; //indent
@@ -61,9 +70,18 @@ int main( int argc,  char **argv){
     python_specific_subscribe(2,pyindent3parea_decorate::scan_callback);
     //python_main_init(argc,argv);
     python_main_init(argc-optind+1,&argv[optind-1]);
-  } else if (bflag || 1){
+  } else if (iflag || 1){
+    pyindent3parea_indent::init();
+    python_specific_subscribe(2,pyindent3parea_indent::scan_callback);
+    //python_main_init(argc,argv);
+    python_main_init(argc-optind+1,&argv[optind-1]);
     
-  } else if (bflag || 1){
+  } else if (rflag || 1){
+    pyindent3parea_strip::init();
+    python_specific_subscribe(2,pyindent3parea_strip::scan_callback);
+    //python_main_init(argc,argv);
+    python_main_init(argc-optind+1,&argv[optind-1]);
+
   } else {
     std::cerr << "unrecognised options: see `info pyindent3parea`";
     exit (1);

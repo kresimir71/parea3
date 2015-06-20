@@ -1,4 +1,4 @@
- /*strip python program of comment-braces */ 
+ /*indent python program of comment-braces */ 
 
 #define RM2PAREA_LIBRARY_HEADER
 
@@ -9,7 +9,7 @@
 #include <list>
 #include <stack>
 
-namespace pyindent3parea_strip {
+namespace pyindent3parea_indent {
 
 #include "common.h"
 
