@@ -1,0 +1,266 @@
+\input texinfo   @c -*-texinfo-*-
+@c %**start of header
+@setfilename pyindent3parea.info
+@settitle pyindent3parea Manual 1.0
+@c %**end of header
+
+
+@copying
+
+Copyright @copyright{} 2015 K.Karamazen
+@end copying
+
+@titlepage
+@title pyindent3parea utility
+@c The following two commands start the copyright page.
+@page
+@vskip 0pt plus 1filll
+@insertcopying
+@end titlepage
+@c Output the table of contents at the beginning.
+@contents
+
+@ifnottex
+@node Top
+@top pyindent3parea
+
+This is pyindent3parea Texinfo file.
+@end ifnottex
+
+@menu
+* Introduction:: It gives stronger control structure to python program
+* Definitions::  What is indented and what is block-structured
+* Defaults::  Default values
+* Invariants::  What is left intact
+* Usage::       Command line
+* Working::       Working principles 
+* Example 1::   From indented to block-structured and indented
+* Example 2::   From block-structured to indented
+* Example 3::   Remove block-structure
+* Known problems::   Stack overflow
+* Index::            Complete index.
+@end menu
+
+@node    Introduction
+@comment Introduction, Command Line, Copying, Top
+@comment node-name,     next,          previous, up
+@chapter Introduction
+@cindex Introduction
+
+  The pyindent3parea utility enables python programmers to use block structures along with the normal python indentation system.
+
+@node    Definitions
+@comment Definitions, Command Line, Copying, Top
+@comment node-name,     next,          previous, up
+@chapter Definitions
+@cindex Definitions
+
+@enumerate
+@item
+When said that python file is indented then we mean that the python file is *correctly* indented as usual.
+     
+@cindex indented
+
+@item
+When said that python file is block-structured then we mean that the python file is *correctly* block-structured by using 'comment braces' #@{ and #@}..@} as explained in this info.
+
+@cindex block-indented
+
+
+@end enumerate
+
+@node    Defaults
+@comment Defaults, Command Line, Copying, Top
+@comment node-name,     next,          previous, up
+@chapter Defaults
+@cindex Defaults
+
+@enumerate
+@item
+Default number of spaces used for indentation is 2.
+     
+@cindex default indentation
+
+@end enumerate
+
+@node    Invariants
+@comment Definitions, Command Line, Copying, Top
+@comment node-name,     next,          previous, up
+@chapter Invariants
+@cindex Invariants
+
+The utility conforms to the following invariants.
+@enumerate
+@item
+No lines are ever added or removed.
+     
+@cindex lines
+
+@item
+An line is never removed. Also an empty line is never removed.
+
+@cindex empty lines
+
+@item
+An empty line (also a line with spaces and tabs only) is never changed.
+
+@cindex empty lines
+
+@item
+A comment is never completely removed to produce an empty line
+
+@cindex comments
+
+@item
+A python file that is already block-structured will not change by applying the operation again. (Idempotence)
+
+@cindex idempotence
+
+@item
+When producing *indented* from *block-structured*, indentation of a correctly indented line is not changed, except when -f flag forces a given number of spaces to use for indentation.
+
+@cindex comments
+
+@end enumerate
+
+@comment node-name, next,          previous, up
+@comment for instance Usage, More Usage,          Intro, (dir)
+@node Usage
+
+@chapter How to use pyindent3parea
+
+@cindex chapter, first
+This is the first chapter.
+@cindex index entry, another
+Here is a numbered list.
+
+@enumerate
+@item
+This is the first item.
+
+@item
+This is the second item.
+@end enumerate
+
+@comment node-name, next,          previous, up
+@comment for instance Working, More Working,          Intro, (dir)
+@node Working
+
+@chapter Working principles
+
+Decorating a python file with block-structure proceeds as follows:
+
+Every INDENT is prefixed with #@{ at the end of the previous line. If the previous line already ends in #@{, it is left intact. If the previous line ends in something like #@{anything then it is left intact
+
+A comment at the end of line beginning with #@{ means the following line begins with INDENT. The other caharacters execpt #@{ are not significant.
+
+A sole comment beginning with #@{  in an otherwise empty line is ignored. In fact, #@{ counts only as the beginning of the comment at the end of a logical line and that logical line must contain more tokens than just white space,comment and a newline token.
+
+A sole comment beginning with #@} is a real possibility. After that line a number of DEDENTS are implied.
+
+
+Every DEDENT burst is prefixed with a comment at the end of the previous line, i.e. #@}@}@} for 3 DEDENTS. If a comment already exists there then it is prepended by #@}@}@} except if the existing comment also begins with #@}. In the later case, the initial part of the existing comment is replaced with the correct number of @} characters.
+
+In fact, every indent is necessarily prededeed by :, thus we do not need any #@{. At the dedent point we need to know how many dedents. The logical line could be ideally prefixed with a number of : (change python syntax slightly). Alternatively, #::: could be placed at the end of the previous line.
+
+@cindex chapter, first
+This is the first chapter.
+@cindex index entry, another
+Here is a numbered list.
+
+@enumerate
+@item
+This is the first item.
+
+@item
+This is the second item.
+@end enumerate
+
+@comment node-name, next,          previous, up
+@comment for instance Usage, More Usage,          Intro, (dir)
+@node Example 1
+
+@chapter Example 1
+
+Assume the following correctly indented python program:
+
+@verbatim
+#! /usr/bin/python2.7
+
+class foo1():
+
+    def __init__(self, server, conn, addr):
+        self.__bar1 = socket.getfqdn()
+        try:
+            self.__foo3 = bar3()
+        except socket.error, err:
+
+    def foo2(self):
+        line = EMPTYSTRING.join(self.__line)
+        print >> DEBUGSTREAM, 'Data:', repr(line)
+        self.__line = []
+        if self.__state == self.COMMAND:
+            if not line:
+                self.push('500 Error: bad syntax')
+                return
+            method = None
+
+@end verbatim
+
+By decorating we get:
+
+@verbatim
+#! /usr/bin/python2.7
+
+class foo1(): #{
+
+    def __init__(self, server, conn, addr): #{
+        self.__bar1 = socket.getfqdn()
+        try: #{
+            self.__foo3 = bar3() #}
+        except socket.error, err: #}
+
+    def foo2(self): #{
+        line = EMPTYSTRING.join(self.__line)
+        print >> DEBUGSTREAM, 'Data:', repr(line)
+        self.__line = []
+        if self.__state == self.COMMAND: #{
+            if not line: #{
+                self.push('500 Error: bad syntax')
+                return #}
+            method = None #}}}
+
+@end verbatim
+@comment node-name, next,          previous, up
+@comment for instance Usage, More Usage,          Intro, (dir)
+@node Example 2
+
+@chapter Example 2
+
+Assume the following correctly indented python program:
+
+@comment node-name, next,          previous, up
+@comment for instance Usage, More Usage,          Intro, (dir)
+@node Example 3
+
+@chapter Example 3
+
+Assume the following correctly indented python program:
+
+@comment node-name, next,          previous, up
+@comment for instance Usage, More Usage,          Intro, (dir)
+@node Known problems
+
+@chapter Known problems
+
+The parser consumes currently a lot of stack. That results in a 'segmentation fault' for large python files. The problem will be fixed. The remedy for the time beeing is to enlarge the stack with 'ulimit'.
+
+
+
+
+
+@node Index
+@unnumbered Index
+@printindex cp
+
+@bye
