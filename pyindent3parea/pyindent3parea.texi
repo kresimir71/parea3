@@ -62,7 +62,7 @@ When said that python file is indented then we mean that the python file is *cor
 @cindex indented
 
 @item
-When said that python file is block-structured then we mean that the python file is *correctly* block-structured by using 'comment braces' #@{ and #@}..@} as explained in this info.
+When said that python file is block-structured then we mean that the python file is *correctly* block-structured by using 'comment dedent' #: or #:: ect.  as explained in this info.
 
 @cindex block-indented
 
@@ -91,10 +91,6 @@ Default number of spaces used for indentation is 2.
 
 The utility conforms to the following invariants.
 @enumerate
-@item
-No lines are ever added or removed.
-     
-@cindex lines
 
 @item
 An line is never removed. Also an empty line is never removed.
@@ -102,24 +98,14 @@ An line is never removed. Also an empty line is never removed.
 @cindex empty lines
 
 @item
-An empty line (also a line with spaces and tabs only) is never changed.
-
-@cindex empty lines
-
-@item
-A comment is never completely removed to produce an empty line
-
-@cindex comments
-
-@item
-A python file that is already block-structured will not change by applying the operation again. (Idempotence)
+A python file that is already indented and block-structured will not change by applying the operation again. (Idempotence)
 
 @cindex idempotence
 
 @item
 When producing *indented* from *block-structured*, indentation of a correctly indented line is not changed, except when -f flag forces a given number of spaces to use for indentation.
 
-@cindex comments
+@cindex indentation
 
 @end enumerate
 
@@ -150,18 +136,15 @@ This is the second item.
 
 Decorating a python file with block-structure proceeds as follows:
 
-Every INDENT is prefixed with #@{ at the end of the previous line. If the previous line already ends in #@{, it is left intact. If the previous line ends in something like #@{anything then it is left intact
+Every INDENT is naturally prefixed with : at the end of the previous line.
 
-A comment at the end of line beginning with #@{ means the following line begins with INDENT. The other caharacters execpt #@{ are not significant.
+A sole comment beginning with #: means DEDENT in the next line. #:: means two DEDENTS and so on. After that line a number of DEDENTS are implied.
 
-A sole comment beginning with #@{  in an otherwise empty line is ignored. In fact, #@{ counts only as the beginning of the comment at the end of a logical line and that logical line must contain more tokens than just white space,comment and a newline token.
+Every DEDENT burst is prefixed with a sole comment on the previous line, i.e. #::: for 3 DEDENTS. If a comment already exists there and it has the form of one or more colons then it is changed to suit the number of DEDENTS: The number of DEDENTS is equal to the number of colons.
 
-A sole comment beginning with #@} is a real possibility. After that line a number of DEDENTS are implied.
+In fact, every indent is necessarily precedeed by : . At the dedent point we need to know how many dedents. The logical line could be ideally prefixed with a number of : (change python syntax slightly). Alternatively, #::: for 3 DEDENTS is placed at the end of the previous line.
 
-
-Every DEDENT burst is prefixed with a comment at the end of the previous line, i.e. #@}@}@} for 3 DEDENTS. If a comment already exists there then it is prepended by #@}@}@} except if the existing comment also begins with #@}. In the later case, the initial part of the existing comment is replaced with the correct number of @} characters.
-
-In fact, every indent is necessarily prededeed by :, thus we do not need any #@{. At the dedent point we need to know how many dedents. The logical line could be ideally prefixed with a number of : (change python syntax slightly). Alternatively, #::: could be placed at the end of the previous line.
+If a comment stands on a line wich is otherwise not empty or contains anything more than # followed by a positive number of colons, eventually followed by some empty space (spaces and tabs), then such a comment is not considered significant and is never changed or otherwise used.
 
 @cindex chapter, first
 This is the first chapter.
@@ -212,12 +195,13 @@ By decorating we get:
 @verbatim
 #! /usr/bin/python2.7
 
-class foo1(): #{
+class foo1(): 
 
-    def __init__(self, server, conn, addr): #{
+    def __init__(self, server, conn, addr): 
         self.__bar1 = socket.getfqdn()
-        try: #{
-            self.__foo3 = bar3() #}
+        try: 
+            self.__foo3 = bar3() 
+            #:
         except socket.error, err: #}
 
     def foo2(self): #{

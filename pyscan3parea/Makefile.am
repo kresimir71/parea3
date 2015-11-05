@@ -1,7 +1,7 @@
 
 lib_LTLIBRARIES = libpyscan3parea.la
 lib_LIBRARIES = libpyscan3parea.a
-#libpyscan3parea_la_CFLAGS = -O0  #there are problems on Debian 6 64bit with -O2
+#libpyscan3parea_la_CFLAGS = -O0  
 libpyscan3parea_la_CPPFLAGS=-I../mm3parea -I../rm3parea -DNDEBUG -DRM2_BUILD_LIBRARY
 libpyscan3parea_a_CPPFLAGS=$libpyscan3parea_la_CPPFLAGS
 libpyscan3parea_la_SOURCES = debug.h goals.h inc.h main.c appl.h debug2.h inc.c main.h x_io1.h lex.yy_.c x_rm1.tab1.c

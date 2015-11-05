@@ -19,6 +19,6 @@ AC_PROG_RANLIB
 
 #CFLAGS="$CFLAGS -ansi"
 
-CFLAGS="$CFLAGS -O0"  #there are problems on Debian 6 64bit with -O2
+CFLAGS="$CFLAGS -O2" 
 
 AC_OUTPUT(Makefile mm3parea/Makefile rm3parea/Makefile pyscan3parea/Makefile pyindent3parea/Makefile)

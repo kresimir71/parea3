@@ -9,7 +9,7 @@ librm3parea_a_SOURCES = $librm3parea_la_SOURCES
 librm3parea_la_CPPFLAGS=-I../mm3parea
 librm3parea_a_CPPFLAGS=$librm3parea_la_CPPFLAGS
 
-#librm3parea_la_CFLAGS = -O0  #there are problems on Debian 6 64bit with -O2
+#librm3parea_la_CFLAGS = -O0  
 
 otherincludedir = $(includedir)/rm3parea
 otherinclude_HEADERS = stack.h rm1.h rbt.h rbt_shortcuts.h misc.h list.h col.h aa.h
