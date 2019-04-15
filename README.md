@@ -1,9 +1,35 @@
 # parea3
-Scanning and parsing in bison and flex
+
+Scanning and parsing in bison and flex.
+
+This is a continuation of a project from 2003. See also the old source documented in a top-down requirements fashion.
+
+## Old project from year 2003
+
+Here I want to remind about my old project on c preprocessing. There the documentation contains the links between ‘the requirements’ and the source code. Hypertext documentation of a source from the year 2003 is an example of how I would like to write software documentation.
+
+http://abec.info/cpp2html/doc.html
+
+## python language lexical scanner
+
+In order to test the python scanner library on a typical Linux system proceed as follows:
+
+```
+server=https://github.com/kresimir71/
+project=parea3/archive/master.zip
+wget "$server$project"
+unzip master.zip
+cd parea3-master
+./configure
+make install
+pyscan3parea/pyscan3parea_test test.py
+```
+
+The test program will read test.py word by word and print exactly the same to the screen.
 
 ## PYTHON INDENTATION COMMENTS
 
-The development of this functionality, together with testing some variations on the choice of the markers, is going on on parea3pyindent branch on Github.
+The development of this functionality, together with testing some variations on the choice of the markers, is going on in parea3pyindent directory.
 
 The python indentation syntax is an obstacle for preprocessing.
 
